@@ -1,5 +1,7 @@
 package com.sc.fmsd;
 
+import static org.junit.Assert.*;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,10 +41,31 @@ public class PlayGameTest {
 		org.junit.Assert.assertEquals(1, pg.nextStatus(p1, strArr));
 	}
 
+	/*
+	 * @author :ChenChen :1492148
+	 * 
+	 * @description : Any live cell with fewer than two live neighbours dies
+	 */
 	@Test
 	public void testValidateFewerThanTwoLive() {
-		org.junit.Assert.assertEquals(0,
-				pg.validateFewerThanTwoLive(p5, strArr));
+		// 初始矩阵生命生死状态
+		String[][] initalArray = new String[][] {
+				{ ".", ".", ".", ".", ".", ".", ".", "." },
+				{ ".", "*", ".", "*", ".", ".", "*", "." },
+				{ ".", ".", ".", "*", "*", ".", "*", "." },
+				{ ".", ".", ".", ".", ".", ".", ".", "." } };
+
+		// 活着的生命周围有0个活着生命对象，下一代该生命死去
+		Point p0 = new Point(1, 1, 1);
+		assertEquals(0, pg.validateFewerThanTwoLive(p0, initalArray));
+
+		// 活着的生命周围有1个活着生命对象，下一代该生命死去
+		Point p1 = new Point(1, 6, 1);
+		assertEquals(0, pg.validateFewerThanTwoLive(p1, initalArray));
+
+		// 活着的生命周围有2个活着生命对象，下一代该生命还活着
+		Point p2 = new Point(1, 4, 1);
+		assertEquals(1, pg.validateFewerThanTwoLive(p2, initalArray));
 	}
 
 	@Test
