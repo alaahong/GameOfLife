@@ -21,7 +21,7 @@ public class PlayGameTest {
 	Point p4 = new Point(2, 4, 1);
 	Point p5 = new Point(1, 1, 0);
 	Point p6 = new Point(1, 5, 1);
-
+	Point p7 = new Point(3, 3, 0);
 	@Before
 	public void setUp() throws Exception {
 		pg = new PlayGame();
@@ -74,10 +74,27 @@ public class PlayGameTest {
 				.assertEquals(1, pg.validateEqualsThreeLive(p1, strArr));
 	}
 
+	/*
+	** @author : Wang Huiyuan : 1492174
+	** 
+	** @description : Any live cell with two live neighbours lives 
+	** on to the next generation
+	** p3 stands for a live cell with two live neighbours
+	** p7 stands for a dead cell with two live neighbours
+	** Both of them are defined and initialized at the beginning of PlayGameTest definition 
+	*/
 	@Test
-	public void testValidateEqualsTwoLive() {
-		org.junit.Assert.assertEquals(1, pg.validateEqualsTwoLive(p6, strArr));
+	public void testValidateEqualsTwoLives() {
+		// A live cell with two live neighbours lives on to next generation
+		org.junit.Assert
+				.assertEquals("A live cell with two live neighbours lives on to next generation",
+						1, pg.validateEqualsTwoLives(p3, strArr));
+		// A dead cell should still be dead in next generation
+		org.junit.Assert
+				.assertFalse("Dead cell with two live neighbours should be dead in next generation", 
+						1 == pg.validateEqualsTwoLives(p7, strArr));  
 	}
+
 
 	@Test
 	public void testValidateEqualsThreeDead() {

@@ -29,7 +29,7 @@ public class PlayGame {
 		if(p.getStatus() == 0 ){
 			result = validateNotEqualsThreeDead(p,arr);
 		}else if(liveStockNum(p, arr) ==2){
-			result = validateEqualsTwoLive(p,arr);
+			result = validateEqualsTwoLives(p,arr);
 		}else if(liveStockNum(p, arr) ==3){
 			result = validateEqualsThreeLive(p,arr);
 		}else if(liveStockNum(p, arr) <2){
@@ -69,15 +69,22 @@ public class PlayGame {
 		return result;
 	}
 
-	public int validateEqualsTwoLive(Point p, String[][] arr) {
+	/*
+	** @author : Wang Huiyuan : 1492174
+	** 
+	** @description : Any live cell with two live neighbour's lives 
+	** on to the next generation
+	*/
+	public int validateEqualsTwoLives(Point p, String[][] arr) {
 		int result;
 		if (p.getStatus() == 0) {
-			result = validateEqualsThreeDead(p, arr);
+			result = 0;
 		} else {
 			result = liveStockNum(p, arr) == 2 ? 1 : 0;
 		}
 		return result;
 	}
+
 
 	public int validateEqualsThreeDead(Point p, String[][] arr) {
 		int result = 0;
@@ -92,7 +99,7 @@ public class PlayGame {
 		if(p.getStatus()==0 ){
 			result = liveStockNum(p, arr) != 3 ? 0 : 1;
 		}else if(liveStockNum(p, arr) ==2){
-			result = validateEqualsTwoLive(p,arr);
+			result = validateEqualsTwoLives(p,arr);
 		}else if(liveStockNum(p, arr) ==3){
 			result = validateEqualsThreeLive(p,arr);
 		}else if(liveStockNum(p, arr) <2){
