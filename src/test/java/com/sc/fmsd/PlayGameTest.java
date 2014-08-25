@@ -36,10 +36,6 @@ public class PlayGameTest {
 		org.junit.Assert.assertEquals(3, pg.liveStockNum(p1, strArr));
 	}
 
-	@Test
-	public void nextStatusTest() {
-		org.junit.Assert.assertEquals(1, pg.nextStatus(p1, strArr));
-	}
 
 	/*
 	 * @author :ChenChen :1492148
@@ -68,11 +64,6 @@ public class PlayGameTest {
 		assertEquals(1, pg.validateFewerThanTwoLive(p2, initalArray));
 	}
 
-	@Test
-	public void testValidateEqualsThreeLive() {
-		org.junit.Assert
-				.assertEquals(1, pg.validateEqualsThreeLive(p1, strArr));
-	}
 
 	/*
 	** @author : Wang Huiyuan : 1492174
@@ -106,6 +97,52 @@ public class PlayGameTest {
 	public void testValidateNotEqualsThreeDead() {
 		org.junit.Assert.assertEquals(1,
 				pg.validateNotEqualsThreeDead(p1, strArr));
+	}
+	/* 
+	 * @author: Tingxun Shi (1492124)
+	 *
+	 * @description: generate the next global status, using a complex example
+	 */
+	@Test
+	public void nextStatusTest() {
+		String[][] initialArray = new String[][] {
+				{ ".", ".", ".", ".", ".", ".", ".", "." },
+				{ ".", "*", "*", "*", "*", "*", "*", "." },
+				{ ".", ".", ".", ".", ".", "*", "*", "." },
+				{ ".", ".", ".", ".", ".", ".", ".", "." } };
+		for (int i = 1; i <= 5; i++) {
+			Point p = new Point(1, i, 1);
+			if (i == 1 || i == 4) {
+				assertEquals(0, pg.nextStatus(p, initialArray));
+			} else {
+				assertEquals(1, pg.nextStatus(p, initialArray));
+			}
+		}
+		Point p1 = new Point(2, 2, 0);
+		assertEquals(1, pg.nextStatus(p1, initialArray));
+
+		Point p2 = new Point(2, 4, 1);
+		assertEquals(0, pg.nextStatus(p2, initialArray));
+
+		Point p3 = new Point(2, 5, 1);
+		assertEquals(1, pg.nextStatus(p3, initialArray));
+	}
+/* 
+	 * @author: Hao Li
+	 *
+	 * @description: given an alive cell surrounded by three alive cells,
+	 * it should still live
+	 */
+	@Test
+	public void testValidateEqualsThreeLive() {
+		String[][] initialArray = new String[][] {
+				{ ".", ".", ".", ".", ".", ".", ".", "." },
+				{ ".", "*", "*", "*", ".", ".", "*", "." },
+				{ ".", ".", ".", "*", "*", ".", "*", "." },
+				{ ".", ".", ".", ".", ".", ".", ".", "." } };
+		Point p = new Point(1, 3, 1);
+		org.junit.Assert
+				.assertEquals(1, pg.validateEqualsThreeLive(p, initialArray));
 	}
 
 }
