@@ -40,6 +40,11 @@ public class PlayGame {
 		}
 		return result;
 	}
+	/*
+	** @author : Wu Yan : 1492154
+	** 
+	** @description : Any live cell with fewer than two live neighbours dies 
+	*/
 	public int validateFewerThanTwoLive(Point p, String[][] arr) {
 		int result;
 		if (p.getStatus() == 0) {
@@ -65,7 +70,7 @@ public class PlayGame {
 		if (p.getStatus()  == 0) {
 			result = validateNotEqualsThreeDead(p, arr);
 		} else {
-			result = liveStockNum(p, arr) == 3 ? 0 : 1;
+			result = liveStockNum(p, arr) == 3 ? 1 : 0;
 		}
 		return result;
 	}
