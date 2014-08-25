@@ -30,7 +30,12 @@ public class PlayGameTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
+/**
+ * @author ZhangZhe(1492098)
+ * 
+ * @description test the function of live counts. 
+ * 
+ */
 	@Test
 	public void liveStockNumTest() {
 		org.junit.Assert.assertEquals(3, pg.liveStockNum(p1, strArr));
@@ -86,13 +91,19 @@ public class PlayGameTest {
 						1 == pg.validateEqualsTwoLives(p7, strArr));  
 	}
 
-
+/**
+ * @author WuYan
+ * @description test the function of one dead with three lives.
+ */
 	@Test
 	public void testValidateEqualsThreeDead() {
 		org.junit.Assert
 				.assertEquals(0, pg.validateEqualsThreeDead(p5, strArr));
 	}
-
+	/**
+	 * @author ZhangZhe (1492098)
+	 * @description three livestock around one dead point~
+	 */
 	@Test
 	public void testValidateNotEqualsThreeDead() {
 		org.junit.Assert.assertEquals(1,

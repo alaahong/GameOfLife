@@ -5,7 +5,8 @@ import com.sc.fmsd.vo.Point;
 public class PlayGame {
 
 	/**
-	 * @param args
+	 * @author ZhangZhe(1492098)
+	 * @description do the base function.
 	 */
 
 
